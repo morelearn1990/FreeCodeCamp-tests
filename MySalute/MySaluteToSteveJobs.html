@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MySaluteToSteveobs</title>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="Mysalute.css">
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<script>
+			$(document).ready(function(){
+			$("#container1").show();
+			$("#container2").hide();
+			$("#container3").hide();   
+			$("#btnnav1").click(function(){
+				$("#container1").show();
+				$("#container2").hide();
+				$("#container3").hide();
+			});
+			$("#btnnav2").click(function(){
+				$("#container1").hide();
+				$("#container2").show();
+				$("#container3").hide();
+			});
+			$("#btnnav3").click(function(){
+				$("#container1").hide();
+				$("#container2").hide();
+				$("#container3").show();
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="htmlmain" id="htmlheader">
+		<div class="headermain">
+			<div class="headernavmain">
+				<div class="buttonnav" id="btnnav1">生命时间线</div>
+				<div class="buttonnav" id="btnnav2">一生成就</div>
+				<div class="buttonnav" id="btnnav3">人生理念</div>
+			</div>
+		</div>
+	</div>
+	<div class="htmlmain" id="htmlbody">
+			<div id="bodyheader"></div>
+			<div class="bodymain">
+				<div class="contain"  id="container1">
+					<div class="containh"><h1>生命时间线</h1></div>
+					<div class="containerc">
+						<p>1955年2月24日，史蒂夫·乔布斯出生在美国旧金山</p>
+						<p>1976年4月1日，乔布斯、沃兹及乔布斯的朋友龙·韦恩签署了一份合同，成立了一家名为“苹果”的电脑公司,他们的产品被称为“苹果I号”。</p>
+						<p>1980年12月12日，苹果公司股票公开上市，在不到一个小时内，460万股全被抢购一空，当日以每股29美元收市，创造了4名亿万富翁和至少40名百万富翁。</p>
+						<p>1985年9月17日史蒂夫·乔布斯被迫离开苹果公司。</p>
+						<p>1996年苹果公司经营陷入困局，市场份额也由鼎盛的16%跌到4%。乔布斯重回苹果公司大刀阔斧改革，停止了不合理的研发和生产和结束了微软和苹果多年的专利纷争，并开始研发新产品iMac和OS X操作系统。于1997年苹果推出iMac，获得人们的一致认可。</p>
+						<p>2000年科技股泡沫，乔布斯提出将PC设计成“数字中枢“先进理念，并先后开发出iTunes和iPod。</p>
+						<p>2007年6月29日，苹果公司推出自有设计使用iOS系统的iPhone手机，随后发布新一代iPhone 3G以及iPhone 3GS。</p>
+						<p>2010年6月8日发布第四代产品iPhone4，引起世界极大的疯狂和热潮</p>
+						<p>2011年11月5日，史蒂夫·乔布斯永远的离开了我们。</p>
+						<p>如果你获取更多信息，<a href="https://en.wikipedia.org/wiki/Steve_Jobs" target="_blank">请点击这儿</a></p>
+					</div>
+				</div>
+				<div class="contain" id="container2">
+					<div class="containh"><h1>一生成就</h1></div>
+					<div class="containerc">
+					<ul>
+						<li>2012 美国最具影响力20人 (提名)</li>
+						<li>2009 时代周刊年度风云人物之一、美国最佳CEO（提名)</li>
+						<li>2007 年度最伟大商人 提名)</li>
+						<li>1997 最成功的管理者 提名)</li>
+						<li>1989 十年企业家 （提名）</li>
+						<li>1987 杰斐逊公众服务奖（获奖）</li>
+						<li>1985 里根总统授予的国家级技术勋章（获奖）</li>
+						<li class="">实际上这些成就完全不能表达Steve Jobs对这个世界的贡献</li>
+					</ul>
+					</div>
+				</div>
+				<div class="contain" id="container3">
+					<div class="containh"><h1>人生理念</h1></div>
+					<div class="containerc">
+						<h4>我最崇拜的理念:</h4>
+						<p style="font-size: 40px">简约</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="htmlmain" id="htmlfooter">
+		<p>© Copyright 2016 - 2017 MySalueToJobs, All Rights Reserved <br>
+		</p>
+	</div>
+</body>
+</html>
