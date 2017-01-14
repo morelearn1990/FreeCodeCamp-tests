@@ -1,0 +1,62 @@
+body {
+	font-family: "黑体" "Sans-serif";
+}
+#top {
+	background-color: #CCC;
+}
+ul.navbar-nav li a:hover,
+ul.navbar-nav li a:focus {
+	background-color: rgba(255,255,255,0.5);
+}
+
+.jumbotron {
+	height: 650px;
+	margin-top: 50px;
+	padding: 200px 100px;
+	background-color:#E6E6E6; 
+	background-image: url(bg-header.jpg);
+}
+.jumbotron>.container {
+	margin-top: 60px;
+}
+.btn {
+	color: #000;
+	border-color: #000;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.6);
+}
+.btn:hover {
+	color: #FFF;
+	background-color: #000;
+	transform: scale(1.1);
+	transition: 0.3s;
+	box-shadow: 5px 5px 5px rgba(0,0,0,.6);
+}
+.btn>i {
+	color: #FFF;
+}
+.article {
+	width: 98%;
+	height: 400px;
+}
+#introducecontent {
+	width: 40%;
+}
+.linkto {
+	padding-top: 50px;
+}
+.bs-docs-section {
+	height: 680px;
+}
+.img-works {
+	box-shadow: 5px 5px 5px rgba(0,0,0,.6);
+}
+.img-works:hover {
+	transform: scale(1.1);
+	transition: 0.3s;
+	box-shadow: 8px 8px 8px rgba(0,0,0,.6);
+}
+footer {
+	margin-top: -40px;
+	height: 40px;
+	line-height: 40px;
+}
