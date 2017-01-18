@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="CSS/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="danmu.css">
+</head>
+<body>
+	<div class="container">
+		<div class="screen">
+		</div>
+		<div class="input-bar">
+			<div class="bar1">
+				<input class="inputarea inputanimate" id="inputbar" type="text" placeholder="思考点什么吧~~">
+			</div>
+			<div class="bar2">
+				<input type="button" class="inputbutton inputanimate" id="inputsend" value="吐槽">
+				<input type="button" class="inputbutton inputanimate" id="inputempty" value="清屏">
+			</div>
+		</div>
+	</div>
+	<span>by morelearn</span>
+<script src="jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="wilddog-auth.js" type="text/javascript"></script>
+<script src="wilddog-sync.js" type="text/javascript"></script>
+<script>
+	//定义随机颜色数组
+	var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6','#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
+	//初始化弹幕服务器
+	var config = {
+		authDomain:"fccmorelearn-danmu.wilddog.com",
+			syncURL: "https://fccmorelearn-danmu.wilddogio.com" 
+			//输入节点 URL
+		};
+	wilddog.initializeApp(config);
+	var ref = wilddog.sync().ref();
+	//定义弹幕数据数组，并初始化。。。
+	var messages=["数据正在载入中，请稍等。。。","在稍等。。。","不要等了，开撸吧。。。"];
+	//定义各类函数，发送数据（将数据加入到弹幕数据组中，并发送到服务器），得到数据（从远程服务器得到数据并放入到弹幕数据组中）。。。
+	//从远程服务器获取数据
+	ref.child('messagedata').on('child_added', function(snapshot) {
+		var message = snapshot.val();
+		messages.push(message);
+	});
+	//定义发送数据
+	var sendmessage = function(){
+		var message=$(".inputarea").val();
+		if (message != '') {
+			ref.child("messagedata").push(message);	
+		}
+	}
+	//把弹幕字符串从弹幕数组中 随机 提取出来
+	var messageshow = function(){
+		var mn=Math.floor(Math.random()*messages.length+1)-1
+		return messages[mn];
+	}
+	//弹幕动画显示
+	var topmin = $(".screen").offset().top;//定义屏幕的顶点
+	var topmax = topmin + $(".screen").height()-50;//定义屏幕的底部
+	var _top = topmin;//初始高度在屏幕顶部
+	var movemessage = function(message){  //定义动画函数
+		var showObj= $("<div class='messagediv'></div>");
+		showObj.text(message);
+		$(".screen").append(showObj);
+		var _left = $('.screen').width();
+		_top = _top + 50;
+		if (_top>topmax) {
+			_top=topmin;
+		}
+		showObj.css({"position":"absolute","left":_left,"top":_top,"color":getReandomColor()});
+		var time = 4000 + 2000 * Math.random();
+		showObj.animate({"left":"-"+_left+"px"}, time, function(){
+			showObj.remove();
+		});
+	}
+	var autoMessage = function(){
+		movemessage(messageshow());
+		setTimeout(autoMessage,1000);
+	}
+	//随机弹幕颜色
+	var getReandomColor = function() {
+		return '#'+(function(h){
+			return new Array(7-h.length).join("0")+h;
+		})((Math.random()*0x1000000<<0).toString(16));
+	}
+	//定义随机背景颜色
+	var bgcolor = function(){
+		if(colors.length>0){
+				var cn=Math.floor(Math.random()*colors.length+1)-1;
+			}
+		$("body").css("background",colors[cn]);
+		$(".inputbutton").css("background",colors[cn]);
+		$(".inputarea").css("background",colors[cn]);
+	}
+	$("document").ready(function(){
+		autoMessage();
+
+		$("#inputbar").on("click",function(){
+			bgcolor();
+		});	
+		$("#inputbar").keypress(function(event){
+			if(event.keyCode == "13") {
+				$("#inputsend").trigger('click');
+			}
+		});
+		$("#inputsend").on("click",function(){
+			bgcolor();
+			sendmessage();
+			var message=$("#inputbar").val();
+			movemessage(message);
+			$("#inputbar").val('');
+		});
+		$("#inputempty").click(function(){
+			bgcolor();
+			$(".screen").empty();
+			$("#inputbar").val('');
+		});
+	});
+</script>			
+</body>
+</html>
+
+
+
+
+
+
+
+
+

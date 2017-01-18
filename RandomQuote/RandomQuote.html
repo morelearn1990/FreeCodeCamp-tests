@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Random Quote</title>
+	<link rel="stylesheet" type="text/css" href="CSS/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="RandomQuote.css">
+</head>
+<body>
+	<div class="container">
+		<div class="quote-container">
+			<p><i class="fa fa-quote-left fa_color"></i><span id="quote">Genius only means hard-working all one's life</span></p>
+		</div>
+		<div class="author-container">
+			<p>- <span id="author">Mendeleyev</span></p>
+		</div>
+		<div class="button-container">
+			<a class="button-share" id="twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+			<a class="button-share" id="tumblr" target="_blank"><i class="fa fa-tumblr"></i></a>
+			<button id="newquote">New quote</button>
+		</div>
+	</div>
+
+	<script src="jquery-1.11.2.min.js"></script>
+	<script src="wilddog-auth.js"></script>
+	<script src="wilddog-sync.js"></script>
+	<script>
+		//定义格言数组
+		var quoteArr=[];
+		//定义随即颜色数组
+		var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
+		//服务器初始化
+		var config = {
+			authDomain:"fccmorelearn-randomquote.wilddog.com",
+  			syncURL: "https://fccmorelearn-randomquote.wilddogio.com"
+			};
+		wilddog.initializeApp(config);
+		var ref = wilddog.sync().ref();
+		//从服务器获取格言数组
+		ref.child('quotedata').on('child_added', function(snapshot) {
+			var quote = snapshot.val();
+			quoteArr.push(quote);
+		});
+		var getQuote = function(){
+			//随机格言
+			if(quoteArr.length>0){
+				//获取随机整数作为格言数组的随机下标
+				var qn=Math.floor(Math.random()*quoteArr.length+1)-1;
+			}
+			$("#quote").text(quoteArr[qn][0]);
+			$("#author").text(quoteArr[qn][1]);
+			setTimeout(getQuote,100000);
+		}
+		var getAnimate = function(){
+			if(colors.length>0){
+				//随机颜色
+				var cn=Math.floor(Math.random()*colors.length+1)-1;
+			}
+			//将随机颜色赋值给各个元素
+			$("body").css({
+				background:colors[cn],
+				color:colors[cn]
+			});
+			$(".fa_color").css({
+				color:colors[cn]
+			});
+			$("button").css({
+				background:colors[cn]
+			});
+			$(".button-share").css({
+				background:colors[cn]
+			});
+		}
+		//jQuery
+		$(document).ready(function(){
+			$("#newquote").click(function(){
+				getAnimate();
+				getQuote();
+			});
+			$("#twitter").click(function(){
+				alert("暂时不能分享,sorry~~~");
+			});
+			$("#tumblr").click(function(){
+				alert("暂时不能分享,sorry~~~");
+			});
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
