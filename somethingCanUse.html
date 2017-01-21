@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="" media="screen and (min-width:500px ) ">
+</head>
+<body>
+	
+</body>
+</html>
 <script>
 	//全角转换成半角
 	for (var i=0;i<arr.length;i++){
@@ -10,4 +21,66 @@
 		arr[i]=String.fromCharCode(arr[i]);
 	}
 </script>
-	
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1"> //定义视窗和告诉浏览器硬件像素和css像素一样
+//大型固定元素，使用position：relative 定位方式，width：100%
+
+//视频、图片等元素在设置的时候是会溢出父元素的，所以我们必须要设置他们的宽度大小，在设置的时候可以使用多类选择器一次性初始化好：img,embed,object,video { max-width:100%; }
+
+点按目标
+//使用手指点击时，宽度在 40*40 范围，最好是设置成  48*48  方便手指大的人操作，当设置点击目标是可以设置得更加小一点，但元素之间的宽度需要预留出来，防止点击到其他元素和防止被挡住；
+
+
+//响应式设计应该从小的设备做起，当屏幕变大了以后重要的信息均保留在了屏幕上，如果反过来，那么有些重要的信息就会被溢出删除。当然做小的屏幕的时候需要考虑性能和质量的平衡，并且对客户重要的信息能够给得到客户；
+
+
+//媒体查询
+//查询硬件的高宽，像素比
+可以用一下方式引入媒体查询 //这样活增加网络请求数量，但是css会比较小
+<link rel="stylesheet" type="text/css" href="" media="screen and (min-width:500px ) "> //设置宽度在500px以上的设备上运行
+
+或者使用这个方式来进行媒体查询 //这样会增加css的大小 减少网络请求。
+@media screen and (min-width:500px ) {
+	body { background-color:green }
+}
+
+//以上两种方式需要进行平衡 如果你对同一个元素设置了不同的CSS 浏览器会根据优先级进行渲染，
+
+
+还有一种@import的方式，但尽量避免使用，代价和优先级非常高；
+
+//媒体查询常用的是min-width：500px 和 max-width:500px 分别指在500px像素以上的设备运行和500px一下的像素运行 不建议使用 min-device-width 因为这是基于设备的宽度来运行的，而min-width是基于浏览器的窗口大小来设定的。
+
+@media screen and (max-width:400px) {
+	body {
+	background-color:red;
+	}
+}
+@media screen and (min-width:400px) and (max-width:599px) {
+	body {
+	background-color:green;
+	}
+}
+@media screen and (min-width:600px) {
+	body {
+	background-color:blue;
+	}
+}
+
+
+当布局根据设置的媒体查询发生变化的点，叫做断点，就如上设置的400，600一样，我们不知道未来可能流行的设备，并且我们没办法根据设备来适应它，相反我们应该根据我们自身的内容来设置断点，一步变应万变；
+
+网格布局是很好的策略，flexbox是很好用的工具之一（能更好的填充空白空间，当孔边空间过大时调整元素使更加紧凑，当空间拥挤时会缩小元素直至最小），CSS属性加上所有的浏览器的前缀，确保老的浏览器不被冷落
+
+
+
+chaining //明天需要查看的
+
+  多重异步函数带来的回调地狱
+
+
+
+
+
+
