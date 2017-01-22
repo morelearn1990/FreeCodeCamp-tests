@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>WikipediaViewer</title>
+	<link rel="stylesheet" type="text/css" href="WikipediaViewer.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+	<div class="mainContainer">
+		<div class="searchContainer">
+			<div class="input-group">
+			  <input type="text" class="form-control" placeholder="请输入想要在维基百科上搜索的词条"></input>
+			  <span class="input-group-addon"> <a class="searchAct"><i class="glyphicon glyphicon-search "></i></a></span>
+
+			</div>
+		</div>
+		<div class="resultContainer">
+		</div>
+	</div>
+	<span>by morelearn</span>
+	<script src="jquery-1.11.2.min.js" type="text/javascript"></script>
+	<script>
+	var searchUrl = function(val){
+		return "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + val + "&limit=20"
+	}
+	//定义接受返回内容的数组
+	var requestContent = [];
+	var str;
+	//生成html元素并发送到 resultContainer 下
+	var addContentToHtml = function(entryTitle,entryDescription,entryURL){
+		var str = "<div class='itemContainer'><a href = '"+entryURL+"' target='_blank'><h1>" + entryTitle + "</h1><p>"+entryDescription+"</p></a></div>" ;
+		var contentObj = $(str);
+		$(".resultContainer").append(contentObj);
+	}
+	$("document").ready(function(){
+		$(".form-control").focus(function(){
+			$(".input-group").css({
+				"width":"100%",
+				"transition":"0.8s"
+			});
+			$("").hide();
+		});
+		$(".form-control").blur(function(){
+			$(".input-group").css({
+				"width":"47%",
+				"transition":"0.8s"
+			});
+			$("").show();
+		});		
+		$(".form-control").keypress(function(event){
+			if(event.keyCode == "13") {
+				$(".input-group-addon").trigger('click');
+			}
+		});
+		$(".input-group-addon").click(function(){
+			$(".resultContainer").empty();
+			var searchContent = "";
+			searchContent = $("input").val();
+			if (searchContent !="") {
+				$(".searchContainer").css({
+					"margin-top":0,
+					"transition":"0.8s"
+				});
+			}
+			var sendUrl = searchUrl(searchContent);
+			// Using YQL and JSONP
+			$.ajax({
+			    url: sendUrl,
+			    // The name of the callback parameter, as specified by the YQL service
+			    jsonp: "callback",			 
+			    // Tell jQuery we're expecting JSONP
+			    dataType: "jsonp",
+			    // Work with the response
+			    success: function( response ) {
+			        requestContent = response;
+			        if (requestContent[1].length != 0){
+				        for (var i = 0; i < requestContent[1].length; i++) {
+							addContentToHtml(requestContent[1][i],requestContent[2][i],requestContent[3][i]);
+						}
+				        console.log( response ); // server response
+				    }else{
+				    	str = "没有此词条，请换新的词条搜索";
+				    	addContentToHtml(str,"","");
+				    }
+			    }
+			});
+		});
+	});
+	</script>
+</body>
+</html>
