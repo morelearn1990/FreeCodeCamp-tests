@@ -35,7 +35,6 @@
 					<td>风向</td>
 					<td></td>
 				</tr>
-
 			</table>
 		</div>
 	</div>
@@ -109,7 +108,6 @@
 			    	"city":city,
 			    	"key":"712404c4f58e448f88f47a26cb81c8f7"
 			    },
-			    jsonp: "callback",
 			    // Tell jQuery we're expecting JSONP
 			    dataType: "json",
 			    // Work with the response
@@ -146,12 +144,10 @@
 			    success: function( response ) {
 			    	if(response){
 			    		getHourlyData=response;
-
 			    	}
 			    }
 			});
 		}
-
 		//获取预告天气数据
 		var getForecastData;
 		var getForecast = function(city){

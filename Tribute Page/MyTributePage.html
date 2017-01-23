@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>MySaluteToSteveobs</title>
+	<title>MyTributePage</title>
 	<link rel="stylesheet" href="bootstrap.min.css">
-	<link rel="stylesheet" href="Mysalute.css">
-	<script src="jquery.min.js"></script>
-	<script src="bootstrap.min.js"></script>
-	<script src="Mysalute.js"></script>
+	<link rel="stylesheet" href="MyTribute.css">
 </head>
 <body>
 	<div class="htmlmain" id="htmlheader">
@@ -63,8 +60,32 @@
 		</div>
 	</div>
 	<div class="htmlmain" id="htmlfooter">
-		<p>© Copyright 2016 - 2017 MySalueToJobs, All Rights Reserved <br>
+		<p>© Copyright 2016 - 2017 MyTributePage  by morelearn, All Rights Reserved <br>
 		</p>
 	</div>
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#container1").show();
+			$("#container2").hide();
+			$("#container3").hide();
+			$("#btnnav1").click(function(){
+				$("#container1").show();
+				$("#container2").hide();
+				$("#container3").hide();
+			});
+			$("#btnnav2").click(function(){
+				$("#container1").hide();
+				$("#container2").show();
+				$("#container3").hide();
+			});
+			$("#btnnav3").click(function(){
+				$("#container1").hide();
+				$("#container2").hide();
+				$("#container3").show();
+			});
+		});
+	</script>
 </body>
 </html>
