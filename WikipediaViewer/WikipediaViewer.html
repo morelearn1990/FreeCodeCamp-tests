@@ -12,7 +12,6 @@
 			<div class="input-group">
 			  <input type="text" class="form-control" placeholder="请输入想要在维基百科上搜索的词条"></input>
 			  <span class="input-group-addon"> <a class="searchAct"><i class="glyphicon glyphicon-search "></i></a></span>
-
 			</div>
 		</div>
 		<div class="resultContainer">
@@ -47,7 +46,7 @@
 				"transition":"0.8s"
 			});
 			$("").show();
-		});		
+		});
 		$(".form-control").keypress(function(event){
 			if(event.keyCode == "13") {
 				$(".input-group-addon").trigger('click');
@@ -68,7 +67,7 @@
 			$.ajax({
 			    url: sendUrl,
 			    // The name of the callback parameter, as specified by the YQL service
-			    jsonp: "callback",			 
+			    jsonp: "callback",
 			    // Tell jQuery we're expecting JSONP
 			    dataType: "jsonp",
 			    // Work with the response
