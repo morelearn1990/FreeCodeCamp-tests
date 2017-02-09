@@ -1,0 +1,27 @@
+body {
+    background-color: #E6E6E6;
+    color: #000;
+    text-align: center;
+}
+.navi{
+    width: 80%;
+    position: fixed;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #E6E6E6;
+    margin-left: 10%;
+}
+.navi>.input-group {
+}
+.main {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+section {
+    width: 100%;
+    border-left: 5px solid white;
+    padding:5px;
+    margin-top: 5px;
+}
